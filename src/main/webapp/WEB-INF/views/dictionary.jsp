@@ -5,7 +5,7 @@
 </head>
 <body>
 <div>
-    <form action="/vietnamese" method="get">
+    <form method="post">
         <h2>Tra Từ Điển</h2>
         <hr>
         <lable>English</lable>

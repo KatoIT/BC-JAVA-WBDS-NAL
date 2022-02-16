@@ -3,7 +3,9 @@ package com.nal.controller;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.ModelAndView;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -11,12 +13,13 @@ import java.util.Map;
 @Controller
 public class CurrentConversionController {
     @GetMapping("/dictionary")
-    public String showForm() {
-        return "dictionary";
+    public ModelAndView showForm() {
+        ModelAndView modelAndView = new ModelAndView("dictionary");
+        return modelAndView;
     }
 
-    @GetMapping("/vietnamese")
-    public String result(@RequestParam String english, Model model) {
+    @PostMapping("/dictionary")
+    public ModelAndView result(@RequestParam String english, Model model) {
         Map<String, String> dictionary = new HashMap<>();
         dictionary.put("Hello", "Xin chào");
         dictionary.put("Hi", "Xin chào");
@@ -33,8 +36,9 @@ public class CurrentConversionController {
         if (vietNam == null) {
             vietNam = "Không tìm thấy từ này";
         }
-        model.addAttribute("ENG", english);
-        model.addAttribute("VIE", vietNam);
-        return "vietnamese";
+        ModelAndView modelAndView = new ModelAndView("vietnamese");
+        modelAndView.addObject("ENG", english);
+        modelAndView.addObject("VIE", vietNam);
+        return modelAndView;
     }
 }
