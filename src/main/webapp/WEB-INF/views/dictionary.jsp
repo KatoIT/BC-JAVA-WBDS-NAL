@@ -1,0 +1,17 @@
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<html>
+<head>
+    <title>Current Conversion</title>
+</head>
+<body>
+<div>
+    <form action="/vietnamese" method="get">
+        <h2>Tra Từ Điển</h2>
+        <hr>
+        <lable>English</lable>
+        <input type="text" name="english" placeholder="Enter...">
+        <button type="submit">Search</button>
+    </form>
+</div>
+</body>
+</html>
