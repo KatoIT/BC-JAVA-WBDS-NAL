@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Songs List</title>
+  <style>
+    table {
+      border: 1px solid #000;
+    }
+
+    th, td {
+      border: 1px dotted #555;
+    }
+    .link {
+      text-decoration: none;
+      color: blue;
+      size: 24px;
+    }
+    .link:hover {
+      color: red;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+There are <span th:text="${songs.size()}"></span> Song(s).
+<table>
+  <caption>Songs List</caption>
+  <thead>
+  <tr>
+    <th>Id</th>
+    <th>Name</th>
+    <th>Artist</th>
+    <th>Category</th>
+    <th>File Path</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr th:each="c : ${songs}">
+    <td th:text="${c.id}"></td>
+    <td>
+      <a class="link" th:href="@{/songs/{id}(id=${c.id})}" th:text="${c.name}" ></a>
+    </td>
+    <td th:text="${c.artist}"></td>
+    <td th:text="${c.category}"></td>
+    <td th:text="${c.filePath}"></td>
+  </tr>
+  </tbody>
+</table>
+</body>
+</html>
