@@ -1,34 +1,34 @@
 package com.nal.service;
 
-import com.nal.model.Product;
+import com.nal.model.Song;
 
 import java.util.ArrayList;
 import java.util.List;
 
 
 public class ProductService implements IProductService {
-    private List<Product> products = new ArrayList<>();
+    private List<Song> songs = new ArrayList<>();
 
     @Override
-    public List<Product> findAll() {
-        return products;
+    public List<Song> findAll() {
+        return songs;
     }
 
     @Override
-    public void save(Product product) {
-        products.add(product);
+    public void save(Song song) {
+        songs.add(song);
     }
 
     @Override
-    public Product findById(int id) {
-        return products.get(id);
+    public Song findById(int id) {
+        return songs.get(id);
     }
 
     @Override
-    public void update(int id, Product product) {
-        for (Product p : products) {
+    public void update(int id, Song song) {
+        for (Song p : songs) {
             if (p.getId() == id) {
-                p = product;
+                p = song;
                 break;
             }
         }
@@ -36,9 +36,9 @@ public class ProductService implements IProductService {
 
     @Override
     public void remove(int id) {
-        for (int i = 0; i < products.size(); i++) {
-            if (products.get(i).getId() == id) {
-                products.remove(i);
+        for (int i = 0; i < songs.size(); i++) {
+            if (songs.get(i).getId() == id) {
+                songs.remove(i);
                 break;
             }
         }

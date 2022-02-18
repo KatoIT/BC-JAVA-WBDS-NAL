@@ -1,17 +1,17 @@
 package com.nal.service;
 
-import com.nal.model.Product;
+import com.nal.model.Song;
 
 import java.util.List;
 
 public interface IProductService {
-    List<Product> findAll();
+    List<Song> findAll();
 
-    void save(Product product);
+    void save(Song song);
 
-    Product findById(int id);
+    Song findById(int id);
 
-    void update(int id, Product product);
+    void update(int id, Song song);
 
     void remove(int id);
 
