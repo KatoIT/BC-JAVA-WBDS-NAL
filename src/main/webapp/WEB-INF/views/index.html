@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Image Of The Day</title>
+    <style>
+        .btn {
+            margin-left: 10px;
+            padding: 5px 10px;
+            border: 2px solid black;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: bold;
+            color: black;
+        }
+        .btn:hover {
+            color: red;
+            border-color: red;
+        }
+        img {
+            scale: inherit;
+            max-height: 500px;
+        }
+    </style>
+    <script>
+        let query = 'https://api.nasa.gov/planetary/apod?api_key=nlaWwrkeqf7iUpBSdgTsuaGEIXBd6ZFs3habHxzA';
+        let request = new XMLHttpRequest();
+        request.open('GET', query);
+        request.onload = function () {
+            if (request.status === 200) {
+                let response = JSON.parse(request.responseText);
+                document.getElementById('img-of-the-day').setAttribute('src', response.url);
+            }
+        };
+        request.send();
+    </script>
+</head>
+<body>
+<img id="img-of-the-day">
+<div>
+    <form action="/image" method="post">
+        <div>
+            <select name="rate" id="rate">
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+            </select>
+        </div>
+        <div>
+            <label for="author">Author:</label>
+            <br>
+            <input type="text" name="author" id="author">
+        </div>
+        <div>
+            <label>Feedback:</label>
+            <br>
+            <textarea name="contentCommend" id="contentCommend" cols="30" rows="3"></textarea>
+        </div>
+        <input type="submit" value="Comment">
+    </form>
+</div>
+
+<div th:each="c : ${comments}">
+
+    <div>
+        <h3 th:text="${c.getAuthor()}"></h3>
+        <h4 th:text="${'+' + c.getRate() + ' ' + c.getContentCommend()}"></h4>
+    </div>
+    <div>
+        <label th:text="${c.getNumberOfLikes()} + ' likes'"></label>
+        <a class="btn" th:href="@{/image/{id}(id=${c.id})}">Like</a>
+    </div>
+    <hr>
+</div>
+</body>
+</html>
