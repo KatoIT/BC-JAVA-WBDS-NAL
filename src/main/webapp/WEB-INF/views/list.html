@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Blog list</title>
+    <style>
+        table {
+            border: 1px solid black;
+            border-spacing: 15px;
+        }
+        .btn {
+            text-decoration: none;
+            margin: 5px;
+            border: 3px solid blue;
+            padding: 3px 10px;
+            border-radius: 5px;
+            font-weight: bold;
+            color: blue;
+        }
+
+        .btn:hover {
+            color: white;
+            background-color: blue;
+            border-color: white;
+        }
+    </style>
+</head>
+<body>
+<a class="btn" href="/blog/create">Create new blog</a>
+<h1>Blogs</h1>
+<table>
+    <tr class="row">
+        <th>Blog ID</th>
+        <th>Blog Content</th>
+        <th>Action</th>
+    </tr>
+    <th:block th:each="b : ${blogs}">
+        <tr class="row">
+            <td th:text="${b.id}"></td>
+            <td th:if="${b.content.length() <= 10}" th:text="${b.content}"></td>
+            <td th:if="${b.content.length() > 10}" th:text="${b.content.substring(0,10) + '...'}"></td>
+            <td>
+                <a class="btn" th:href="@{/blog/detail/__${b.id}__ }">Detail</a>
+                <a class="btn" th:href="@{/blog/edit/__${b.id}__ }">Edit</a>
+                <a class="btn" th:href="@{/blog/delete/__${b.id}__ }">Delete</a>
+            </td>
+        </tr>
+    </th:block>
+</table>
+</body>
+</html>
