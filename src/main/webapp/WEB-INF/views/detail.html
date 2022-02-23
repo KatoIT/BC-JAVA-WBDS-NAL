@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Detail blog</title>
+</head>
+<body>
+<h2 th:text="${blog.title}"></h2>
+<h3 th:text="${blog.category.categoryName}"></h3>
+<p th:text="${blog.content}"></p>
+<i th:text="'Author: '+${blog.author}"></i>
+<i th:text="'Date: '+${blog.time}"></i>
+</body>
+</html>
