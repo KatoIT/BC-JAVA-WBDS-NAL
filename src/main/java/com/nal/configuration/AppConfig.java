@@ -29,12 +29,13 @@ import javax.sql.DataSource;
 import java.util.Properties;
 
 @Configuration
-@ComponentScan("com.nal")
 @EnableWebMvc
-@EnableSpringDataWebSupport
-@EnableJpaRepositories("com.nal.repository")
 @EnableTransactionManagement
+@EnableJpaRepositories("com.nal.repository")
+@ComponentScan("com.nal")
+@EnableSpringDataWebSupport
 public class AppConfig implements WebMvcConfigurer, ApplicationContextAware {
+
     private ApplicationContext applicationContext;
 
     @Override
@@ -81,6 +82,7 @@ public class AppConfig implements WebMvcConfigurer, ApplicationContextAware {
         LocalContainerEntityManagerFactoryBean em = new LocalContainerEntityManagerFactoryBean();
         em.setDataSource(dataSource());
         em.setPackagesToScan("com.nal.model");
+
         JpaVendorAdapter vendorAdapter = new HibernateJpaVendorAdapter();
         em.setJpaVendorAdapter(vendorAdapter);
         em.setJpaProperties(additionalProperties());
