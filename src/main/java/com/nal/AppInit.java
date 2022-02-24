@@ -1,4 +1,4 @@
-package com.nal.configuration;
+package com.nal;
 
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
 
@@ -15,6 +15,6 @@ public class AppInit extends AbstractAnnotationConfigDispatcherServletInitialize
 
     @Override
     protected String[] getServletMappings() {
-        return new String[0];
+        return new String[]{"/"};
     }
 }
