@@ -11,7 +11,7 @@ public class Category {
     private Long categoryId;
     private String categoryName;
 
-    @OneToMany(targetEntity = Blog.class)
+    @OneToMany(targetEntity = Blog.class, fetch = FetchType.EAGER)
     private List<Blog> blogs;
 
     public Category() {
