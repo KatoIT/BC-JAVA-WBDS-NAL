@@ -3,7 +3,7 @@ package com.nal.model;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "customers")
+@Table(name = "13_customers")
 public class Customer {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
