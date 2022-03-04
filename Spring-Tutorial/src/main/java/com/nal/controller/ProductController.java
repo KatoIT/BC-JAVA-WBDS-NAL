@@ -58,22 +58,28 @@ public class ProductController {
         return modelAndView;
     }
 
-    @GetMapping("/delete-product/{id}")
-    public ModelAndView showDeleteForm(@PathVariable Long id) {
-        Optional<Product> product = productService.findById(id);
-        if (product.isPresent()) {
-            ModelAndView modelAndView = new ModelAndView("/product/delete");
-            modelAndView.addObject("product", product.get());
-            return modelAndView;
-        } else {
-            return new ModelAndView("/error-404");
-        }
-    }
+//    @GetMapping("/delete-product/{id}")
+//    public ModelAndView showDeleteForm(@PathVariable Long id) {
+//        Optional<Product> product = productService.findById(id);
+//        if (product.isPresent()) {
+//            ModelAndView modelAndView = new ModelAndView("/product/delete");
+//            modelAndView.addObject("product", product.get());
+//            return modelAndView;
+//        } else {
+//            return new ModelAndView("/error-404");
+//        }
+//    }
 
-    @PostMapping("/delete-product")
-    public String deleteProduct(@ModelAttribute("product") Product product) {
-        productService.remove(product.getId());
-        return "redirect:products";
+//    @PostMapping("/delete-product")
+//    public String deleteProduct(@ModelAttribute("product") Product product) {
+//        productService.remove(product.getId());
+//        return "redirect:products";
+//    }
+
+    @GetMapping("/delete-product/{id}")
+    public ModelAndView deleteProductNew(@PathVariable Long id) {
+        productService.remove(id);
+        return new ModelAndView("redirect:/products");
     }
 
 
