@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Create promotion</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+</head>
+<body>
+<h1>Create promotion</h1>
+<hr>
+<div class="col-md-9">
+    <form th:action="@{/promotions/create}" th:object="${promotion}" method="post">
+        <table class="table table-light">
+            <tr>
+                <td >Tiêu đề</td>
+                <td ><input type="text" class="form-control" th:field="*{title}" placeholder="Tiêu đề"/></td>
+                <td th:if="${#fields.hasErrors('title')}" th:errors="*{title}">Title Error</td>
+            </tr>
+            <tr>
+                <td>Thời gian bắt đầu</td>
+                <td><input type="date" class="form-control" th:field="*{startDay}"/></td>
+                <td th:if="${#fields.hasErrors('startDay')}" th:errors="*{startDay}">StartDay Error</td>
+            </tr>
+            <tr>
+                <td>Thời gian kết thúc</td>
+                <td><input type="date" class="form-control" th:field="*{endDay}"/></td>
+                <td th:if="${#fields.hasErrors('endDay')}" th:errors="*{endDay}">EndDay Error</td>
+            </tr>
+            <tr>
+                <td>Mức giảm giá</td>
+                <td><input type="number" class="form-control" th:field="*{discount}" value="0"/></td>
+                <td th:if="${#fields.hasErrors('discount')}" th:errors="*{discount}">Discount Error</td>
+            </tr>
+            <tr>
+                <td>Chi tiết</td>
+                <td><textarea class="form-control" rows="5" th:field="*{description}"></textarea></td>
+                <td th:if="${#fields.hasErrors('description')}" th:errors="*{description}">Description Error</td>
+            </tr>
+            <tr>
+                <td></td>
+                <td>
+                    <input class="btn btn-primary" type="submit" value="Thêm mới">
+                    <a class="btn btn-primary" href="/promotions">Quay lại</a>
+                </td>
+            </tr>
+        </table>
+    </form>
+</div>
+</body>
+</html>
